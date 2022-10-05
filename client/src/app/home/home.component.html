@@ -17,11 +17,17 @@
 
           <!-- <ul class= "list-group" id="display"> -->
               <table class="d-flex flex-column justify-content-center align-items-cener" >
-                <tr *ngFor="let item of list; let i= index"  #listedItem [style.display]="status" class="itemRow">
-                  <td class="item">{{item}}</td>
+                <tr *ngFor="let item of tasks; let i= index"  #listedItem [style.display]="status" class="itemRow">
+                  <td class="item">{{item.task}}</td>
                   <td><img (click)="edit(listedItem)" class="editBtn" src="../../assets/pen-to-square-solid.svg" width="20"></td>
-                  <td><img (click)="delete(listedItem)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td>
+                  <!-- <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete(item._id)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td> -->
+                  <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete()" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td>
+                <!-- <td>{{item._id}}</td> -->
                 </tr>
+
+                <!-- [routerLink]="['/product',product.id] -->
+
+
 
 
               </table>

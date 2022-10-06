@@ -17,14 +17,20 @@
 
           <!-- <ul class= "list-group" id="display"> -->
               <table class="d-flex flex-column justify-content-center align-items-cener" >
-                <tr *ngFor="let item of tasks; let i= index"  #listedItem [style.display]="status" class="itemRow">
-                  <td class="item">{{item.task}}</td>
-                  <td><img (click)="edit(listedItem)" class="editBtn" src="../../assets/pen-to-square-solid.svg" width="20"></td>
+                <tr *ngFor="let item of tasks; let i= index"  #listedItem class="itemRow">
+
+                  <!-- <td [routerLink]="['/isComplete', item._id]"  (click)="markItem(singleItem)" #singleItem [class.isComplete]="complete" class="item">{{item.task}}</td> -->
+                  <td *ngIf="item.completed == true" (click)="markItem(singleItem, item._id)" #singleItem [class.isComplete]="complete" class="item">{{item.task}}</td>
+
+                  <td *ngIf="item.completed == false" (click)="markItem(singleItem, item._id)" #singleItem  class="item">{{item.task}}</td>
+                  <!-- <td><img (click)="edit(listedItem)" class="editBtn" src="../../assets/pen-to-square-solid.svg" width="20"></td> -->
                   <!-- <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete(item._id)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td> -->
-                  <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete()" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td>
+                  <!-- <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete()" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td> -->
+                  <td><img (click)="delete(item._id)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td>
                 <!-- <td>{{item._id}}</td> -->
                 </tr>
 
+                <!-- [(ngModel)]="name" -->
                 <!-- [routerLink]="['/product',product.id] -->
 
 

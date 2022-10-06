@@ -6,7 +6,9 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
-  {path:"deleteTask/:id", component:HomeComponent}
+  {path:"home", component:HomeComponent},
+  {path:"deleteTask/:id", component:HomeComponent},
+  {path:"isComplete/:id", component:HomeComponent}
 ];
 
 @NgModule({

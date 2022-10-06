@@ -59,10 +59,11 @@ MongoClient.connect(connectionString, {useUnifiedTopology:true})
 
   app.put('/markComplete', (req,res)=>{
     console.log(req.body);
-    db.collection('task').updateOne({task: req.body.taskFromJS},{
+    const ObjectId = require("mongodb").ObjectId;
+    db.collection('task').updateOne({_id:ObjectId(req.body._id)},{
 
      $set:{
-      completed: true
+      completed:req.body.completed
      }
      },{
       // sorting order and find first match
@@ -72,34 +73,34 @@ MongoClient.connect(connectionString, {useUnifiedTopology:true})
      })
      .then(result=>{
       console.log('completed');
-      res.json('completed')
+      res.json({result:result})
      })
      .catch(error => console.error(error))
 
   
   })
 
-  app.put('/markUnComplete', (req,res)=>{
-    console.log(req.body);
-    db.collection('task').updateOne({task: req.body.taskFromJS},{
+  // app.put('/markUnComplete', (req,res)=>{
+  //   // console.log(req.body);
+  //   db.collection('task').updateOne({task: req.body.taskFromJS},{
 
-     $set:{
-      completed: false
-     }
-     },{
-      // sorting order and find first match
-         sort:{_id:-1},
-         // upsert:true -> if there is data that doesn't exsist, it will insert the data.
-         upasert:false
-     })
-     .then(result=>{
-      console.log('completed');
-      res.json('completed')
-     })
-     .catch(error => console.error(error))
+  //    $set:{
+  //     completed: false
+  //    }
+  //    },{
+  //     // sorting order and find first match
+  //        sort:{_id:-1},
+  //        // upsert:true -> if there is data that doesn't exsist, it will insert the data.
+  //        upasert:false
+  //    })
+  //    .then(result=>{
+  //     console.log("result is" , result);
+  //     res.json({message:'testing from backend'},{result:result})
+  //    })
+  //    .catch(error => console.error(error))
 
   
-  })
+  // })
 
 
   app.delete('/deleteTask/:id',(req,res)=>{

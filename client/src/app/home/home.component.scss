@@ -5,6 +5,22 @@
   font-family: 'Lato', sans-serif;
 }
 
+nav{
+  display:flex;
+  justify-content:center;
+  margin-top:5%;
+
+    a{
+      padding:0 5%;
+      text-decoration:none;
+      color : var(--black);
+      font-weight:bold;
+    }
+
+}
+
+
+
 .fa-solid{
   font-size:30px;
 }
@@ -83,7 +99,7 @@ li{
 }
 
 .complete{
-  // text-decoration:line-through;
+  text-decoration:line-through;
 
 
 }

@@ -1,48 +1,59 @@
+<section>
+  <nav>
+    <a routerLink="/logIn">Log In</a>
+    <a routerLink="/signUp">Sign Up</a>
+  </nav>
+</section>
+
 <main class="container d-flex">
   <section class="subContainer">
-
-      <input #item [(ngModel)]="input" type="text" id="newtask" placeholder="Enter here" class="form-control">
-      <button (click)="addItem(item.value)" class="btn mt-3">
-      Add task </button>
-
-
+    <input
+      #item
+      [(ngModel)]="input"
+      type="text"
+      id="newtask"
+      placeholder="Enter here"
+      class="form-control"
+    />
+    <button (click)="addItem(item.value)" class="btn mt-3">Add task</button>
   </section>
 
   <section class="subContainer todoListContainer">
-      <h1>To Do List</h1>
-      <!-- <hr> -->
-      <div class="task"></div>
+    <h1>To Do List</h1>
+    <!-- <hr> -->
+    <div class="task"></div>
 
-      <div class="tasks" >
+    <div class="tasks">
+      <!-- <ul class= "list-group" id="display"> -->
+      <table
+        class="d-flex flex-column justify-content-center align-items-cener"
+      >
+        <tr
+          *ngFor="let item of tasks; let i = index"
+          #listedItem
+          class="itemRow"
+        >
 
-          <!-- <ul class= "list-group" id="display"> -->
-              <table class="d-flex flex-column justify-content-center align-items-cener" >
-                <tr *ngFor="let item of tasks; let i= index"  #listedItem class="itemRow">
+        <!-- [style]="isComplete" -->
+          <td
+            (click)="markItem(singleItem, item._id)"
+            #singleItem
 
-                  <!-- <td [routerLink]="['/isComplete', item._id]"  (click)="markItem(singleItem)" #singleItem [class.isComplete]="complete" class="item">{{item.task}}</td> -->
-                  <td *ngIf="item.completed == true" (click)="markItem(singleItem, item._id)" #singleItem [class.isComplete]="complete" class="item">{{item.task}}</td>
-
-                  <td *ngIf="item.completed == false" (click)="markItem(singleItem, item._id)" #singleItem  class="item">{{item.task}}</td>
-                  <!-- <td><img (click)="edit(listedItem)" class="editBtn" src="../../assets/pen-to-square-solid.svg" width="20"></td> -->
-                  <!-- <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete(item._id)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td> -->
-                  <!-- <td><img [routerLink]="['/deleteTask', item._id]" (click)="delete()" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td> -->
-                  <td><img (click)="delete(item._id)" class="deleteBtn" src="../../assets/trash-can-solid (1).svg" width="20"></td>
-                <!-- <td>{{item._id}}</td> -->
-                </tr>
-
-                <!-- [(ngModel)]="name" -->
-                <!-- [routerLink]="['/product',product.id] -->
-
-
-
-
-              </table>
-          <!-- </ul> -->
-      </div>
-
+            id="{{ i }}"
+            class="item"
+          >
+            {{ item.task }}
+          </td>
+          <td>
+            <img
+              (click)="delete(item._id)"
+              class="deleteBtn"
+              src="../../assets/trash-can-solid (1).svg"
+              width="20"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
   </section>
-
-
-
-
 </main>

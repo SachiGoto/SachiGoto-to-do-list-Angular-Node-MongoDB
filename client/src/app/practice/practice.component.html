@@ -1,0 +1,15 @@
+<!-- <ul *ngFor ="let item of testArray; let i=index">
+  <li #singleItem selectedItem="i" [ngStyle]="{color:selectedItem==i?red:null}" (click)="changeStyle(singleItem)">
+  {{item}}
+  </li>
+</ul> -->
+
+<!-- <ul *ngFor="let item of testArray; let i = index" (click)="changeStyle(item); selectedItem = i"  [ngStyle]="{color: selectedItem == i ? red : null}">
+  {{item}}
+</ul> -->
+
+<ul #ul>
+  <li *ngFor="let item of testArray; let i = index" #li (click)="changeStyle(li, i); selectedItem = i">
+    {{item}}
+  </li>
+</ul>

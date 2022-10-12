@@ -12,6 +12,26 @@ export class ServiceService {
     constructor(private http:HttpClient) { }
     // private url = environment.server;
     private url = environment.server;
+
+
+   signUp(userName:string, email:string, password:string){
+        let signUpBody={
+          userName:userName,
+          email:email,
+          password:password
+        }
+        return this.http.post(this.url + "/signUp", signUpBody)
+   }
+
+   logIn(userName:string, password:string){
+       let loginBody={
+        userName:userName,
+        password:password
+       }
+       return this.http.post<{login:boolean}>(this.url + "/logIn", loginBody)
+
+   }
+
     getTasks(){
       return this.http.get(this.url);
 

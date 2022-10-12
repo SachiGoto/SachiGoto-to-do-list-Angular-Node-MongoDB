@@ -1,4 +1,47 @@
+POST http://localhost:3000/logIn
+
+
+Content-Type: application/json
+
+{   "userName":"jackmo",
+    "password":"345"
+}
+
+
+###
+
+
+
+
+POST http://localhost:3000/signUp
+
+
+Content-Type: application/json
+
+{   "userName":"sachi",
+    "email": "test100",
+    "password":"1234"
+}
+
+
+###
+
+GET https://sachitodolistapis.herokuapp.com/
+
+###
+
+POST https://sachitodolistapis.herokuapp.com/task
+
+
+Content-Type: application/json
+{
+    "task": "test100",
+    "completed":false
+}
+
+###
 GET http://localhost:3000/
+
 
 
 ###
@@ -8,7 +51,8 @@ POST http://localhost:3000/task
 
 Content-Type: application/json
 {
-    "task": "test"
+    "task": "test",
+    "completed":false
 }
 
 

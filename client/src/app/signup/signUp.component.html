@@ -3,24 +3,29 @@
   <h1> Sign Up Page</h1>
 
 
-  <form>
+  <!-- <form> -->
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">User Name</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="email" [(ngModel)]="userName" class="form-control" id="exampleInputUserName" aria-describedby="emailHelp">
+
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input type="email" [(ngModel)]="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+      <input type="password" [(ngModel)]="password" class="form-control" id="exampleInputPassword1">
     </div>
 
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Re enter yoru password</label>
-      <input type="password" class="form-control" id="exampleInputPassword2">
+      <input type="password" [(ngModel)]="rePassword" class="form-control" id="exampleInputPassword2">
     </div>
 
-    <button type="submit" class="btn">Submit</button>
-  </form>
+    <button (click)="signUp()" type="submit" class="btn">Submit</button>
+  <!-- </form> -->
 
   <p class="message">Already have an accout?   <a routerLink="/logIn">Log in here</a></p>
 

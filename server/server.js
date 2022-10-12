@@ -23,6 +23,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology:true})
     console.log('Connected to Database')
     const db = client.db('to-do-list')
     const task = db.collection('task')
+    const users = db.collection('users')
 
     app.get('/', (req,res)=>{
     // res.sendFile(__dirname + '/index.html')
@@ -38,6 +39,69 @@ MongoClient.connect(connectionString, {useUnifiedTopology:true})
     })
     .catch(error=> console.error(error))
     })
+
+    app.post('/logIn',(req,res)=>{
+      let userName = req.body.userName;
+      let password = req.body.password;
+      console.log("username is ", userName);
+      console.log("password is ", password);
+     db.collection('users').findOne({userName:userName,password:password})
+     .then(results=>{
+            if(results===null){
+              res.json({login:false})
+            }else{
+              res.json({login:true})
+            }
+     })
+    
+      // console.log("user" , req.body.userName);
+      // console.log(db.collection('users').findOne({userName:req.body.userName ,password:req.body.password}))
+ 
+      // try{
+      //   res.json({
+      //     login:true
+      //   })
+      // }catch(err){
+      //   res.json(err)
+      // }
+      // if(user === null){
+      //   res.json(error);
+      // }else{
+      //   res.json({
+      //     // userName:req.body.userName,
+      //     login:true
+      //   })
+      // }
+
+      // if(user){
+      //       console.log("successfully loged in")
+      // }else{
+      //   console.error(error);
+      // }
+
+
+        
+    })
+
+ 
+
+
+    app.post('/signUp', (req,res)=>{
+      let userName = req.body.userName;
+      let email = req.body.email;
+      let password = req.body.password;
+
+      users.insertOne({userName:req.body.userName, email:req.body.email, password:req.body.password})
+      
+      .then(result=>{
+        res.json(result);
+        console.log(result);
+        
+      })
+      .catch(error=>console.error(error));
+    
+    })
+    
   
 
   //  '/task' comes from action in the form // 
@@ -119,6 +183,22 @@ MongoClient.connect(connectionString, {useUnifiedTopology:true})
 
 
 })
+
+
+
+// console.log(req.body);
+//         task.insertOne({task: req.body.task, completed:false})
+//           .then(result => {
+//             res.redirect('/');
+//             // res.json({
+//             //     message:"successful"
+//             // })
+//             console.log(result)
+//           })
+//           .catch(error => console.error(error))
+
+
+
 
 // app.listen(3000, function() {
 //     console.log('listening on 3000')
